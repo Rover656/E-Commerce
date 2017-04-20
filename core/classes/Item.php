@@ -3,7 +3,7 @@ class Item {
 	public function LoadItem($id) {
 		require_once("/inc/includes.php");
 		global $dbcon;
-		$sql = "SELECT id, Name, Type, Quantity FROM items WHERE id='{$id}'";
+		$sql = "SELECT * FROM items WHERE id='{$id}'";
 		$result = $dbcon->query($sql);
 		if ($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
