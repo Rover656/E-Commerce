@@ -41,7 +41,8 @@ INSERT INTO `config` (`setting`, `value`) VALUES
 ('currency', 'GBP'),
 ('currency_format', 'english'),
 ('footerCopy', '&copy; Peter Entwistle and Rover656. Check out the source code on <a href=\"http://github.com/Rover656/E-Commerce\">GitHub</a>'),
-('shopTitle', 'E-Shop');
+('shopTitle', 'E-Shop'),
+('installDirectory', '/');
 
 -- --------------------------------------------------------
 

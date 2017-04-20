@@ -2,7 +2,7 @@
 	/////TODO: FIX DEFINED LOCATIONS (WORKS NOW)
 	//This script just adds all the config into a massive array for easy access
 	//Normal Includes
-	require_once($_SERVER["DOCUMENT_ROOT"] . 'core/config.php');
+	require_once(dirname(__FILE__) + ".." + DIRECTORY_SEPARATOR . 'core/config.php');
 	$siteData[0] = $shopTitle;
 	$siteData[1] = $footerCopy;
 	$siteData[2] = $currency;

@@ -19,7 +19,12 @@ class User {
 		if ($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
 				//TODO: Make it so that there is a token expiry time
-				return true;
+				$time = date('siHdmY');
+				if ($row["Expiry"] < $time) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		} else {
 			return false;

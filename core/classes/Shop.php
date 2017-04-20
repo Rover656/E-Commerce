@@ -8,6 +8,20 @@ class Shop {
 			' costs: '.$this->displayCurrency($currency).
 			$this->currencyFormat($currency_format, $item["price"]).'<a></p>';
 		}
+		//NEED TO TEST THEN ENABLE:
+		/*require_once("inc/includes.php");
+		global $dbcon;
+		$sql = "SELECT * FROM items";
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				data[ ] = $row; //NEED TO CHECK LATER
+			}
+			return data;
+		} else {
+			return "";
+		}*/
 	}
 
 	public function displayItemDetails($itemId, $items, $currency, $currency_format) {

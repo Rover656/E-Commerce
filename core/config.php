@@ -11,8 +11,6 @@ $db_pass = "password";
 $db_name = "E-Commerce";
 //Shop Data Encryption
 $shopEncryptionKey = "RANDOMTEXTHERE"; //NOT LOADED BY DB FOR SAFETY
-//Server install directory (FROM THE HTDOCS LOCATION) (BLANK IF IN ROOT)
-$install_dir = "E-Commerce";
 /////////////////TESTING\\\\\\\\\\\\\\\\\\\\\
 
 $currentTheme = "default";
@@ -38,6 +36,9 @@ if ($result->num_rows > 0) {
 		if ($row["setting"] == "currency_format") {
 			$currency_format = "english";
 		}
+		if ($row["setting"] == "installDirectory") {
+			$installDir = $row["value"];
+		}
 	}
 } else {
 	///Shop Details
@@ -47,6 +48,8 @@ if ($result->num_rows > 0) {
 	$currency = "GBP";
 	///Set the currency format
 	$currency_format = "english";
+	//Set the default directory
+	$installDir = "/";
 }
 
 //Check that they are set
@@ -54,9 +57,9 @@ if (!isset($shopTitle)) { $shopTitle = "E-Commerce the Open Source Project"; }
 if (!isset($footerCopy)) { $footerCopy = '&copy;'.date('Y').' Peter Entwistle and Rover656. Check out the source code on <a href="http://github.com/Rover656/E-Commerce">GitHub</a>'; }
 if (!isset($currency)) { $currency = "GBP"; }
 if (!isset($currency_format)) { $currency_format = "english"; }
+if (!isset($currency_format)) { $installDir = "/"; }
 //////////DO NOT CHANGE\\\\\\\\\\
 define("BASE_URL", "/");
-define("ROOT_PATH", $_SERVER["DOCUMENT_ROOT"]."/");
-define("INSTALL_DIR", $_SERVER["DOCUMENT_ROOT"] . "/" . $install_dir . "/");
+define("INSTALL_DIR", $installDir);
 ini_set('default_charset', 'utf-8');
 ?>
