@@ -1,5 +1,5 @@
 <?php
-//TODO: Clean up and revise/add more (When DB Support Enabled)
+//TODO: Complete Re-write for new system (Once account system and session system are completed)
 class Basket {
 	private $shop;
 
