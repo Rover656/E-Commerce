@@ -18,7 +18,6 @@ class User {
 		$result = $dbcon->query($sql);
 		if ($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
-				//TODO: Make it so that there is a token expiry time
 				$time = date('siHdmY');
 				if ($row["Expiry"] < $time) {
 					return true;
@@ -45,10 +44,10 @@ class User {
 		}
 	}
 	///////TODO: Make user data a thing
-	public function GetData() {
+	public function GetData(data) {
 		return "Not Implemented!";
 	}
-	public function BuyProduct() {
+	public function BuyProduct(productId, Quantity) {
 		return "Not Implemented!";
 	}
 }
