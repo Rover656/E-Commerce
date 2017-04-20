@@ -37,7 +37,7 @@ class User {
 				if ($row["Expiry"] < $time) {
 					//UPDATE THE EXPIRY!
 					$time = date('siHdmY') + 100000000000; //Times out after 10 mins!
-					SaveToken($username, $userToken, $time);
+					//SaveToken($username, $userToken, $time); //NEED UPDATE TOKEN NOT SAVE!
 					return true;
 				} else {
 					return false;
