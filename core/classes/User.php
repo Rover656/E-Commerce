@@ -1,6 +1,7 @@
 <?php
 class User {
 	public function DoLogin($username, $password) {
+		//Need to send encrypted data to this script!
 		require_once("/inc/includes.php");
 		global $dbcon;
 		$userToken = GenerateToken();
@@ -37,7 +38,12 @@ class User {
 		    return 0;
 		}
 	}
+	public function Register($username, $password, $email) {
+		//Need to send encrypted data to this script!
+		return 0;
+	}
 	public function CheckToken($token, $username) {
+		//Need to send encrypted data to this script!
 		require_once("inc/includes.php");
 		global $dbcon;
 		$sql = "SELECT Token FROM logintokens WHERE Token='{$token}' AND Username='{$username}'";
@@ -77,6 +83,7 @@ class User {
 		}
 	}
 	public function SaveToken($user, $token, $expiry) {
+		//Need to send encrypted data to this script!
 		require_once("/inc/includes.php");
 		global $dbcon;
 		$sql = "INSERT  INTO `logintokens` (`id`, `Username`, `Token`, `Expiry`) 
@@ -89,6 +96,7 @@ class User {
 		}
 	}
 	public function UpdateToken($user, $token, $expiry) {
+		//Need to send encrypted data to this script!
 		require_once("/inc/includes.php");
 		global $dbcon;
 		$sql = "UPDATE `logintokens` SET `Expiry`='{$expiry}' WHERE `Username'='{$username}' AND `Token`='{$token}'";
