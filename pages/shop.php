@@ -1,3 +1,3 @@
 <?php
-	print_r($Item->LoadItem(0));
+	print_r($Item->LoadItem(1));
 ?>
