@@ -14,17 +14,28 @@ class User {
 		} else {
 			//Register the token
 			$time = date('siHdmY') + 100000000000; //Times out after 10 mins!
-			SaveToken($username, $userToken, $time);
-			$data[0] = true;
-			$data[1] = $userToken;
-			$data[2] = $username;
-			return $data;
+			$result = SaveToken($username, $userToken, $time);
+			if ($result = 1) {
+				$data[0] = true;
+				$data[1] = $userToken;
+				$data[2] = $username;
+				return $data;
+			} else {
+				$data[0] = false;
+				$data[1] = 0;
+				return $data;
+			}
 		}
 	}
 	public function DoLogout($token) {
 		require_once("/inc/includes.php");
 		global $dbcon;
-		//TODO: Do logout script
+		$sql = "DELETE FROM `logintokens` WHERE `Token`='{$token}'";
+		if ($conn->query($sql) === TRUE) {
+		    return 1;
+		} else {
+		    return 0;
+		}
 	}
 	public function CheckToken($token, $username) {
 		require_once("inc/includes.php");
@@ -37,8 +48,12 @@ class User {
 				if ($row["Expiry"] < $time) {
 					//UPDATE THE EXPIRY!
 					$time = date('siHdmY') + 100000000000; //Times out after 10 mins!
-					//SaveToken($username, $userToken, $time); //NEED UPDATE TOKEN NOT SAVE!
-					return true;
+					$result = UpdateToken($username, $userToken, $time); //NEED UPDATE TOKEN NOT SAVE!
+					if ($result = 1) {
+						return true;
+					} else {
+						return false;
+					}
 				} else {
 					return false;
 				}
@@ -68,13 +83,19 @@ class User {
 				VALUES (NULL, '{$user}', '{$token}', '{$expiry}')";
 
 		if ($mysqli->query($sql)) {
-			//echo "New Record has id ".$mysqli->insert_id;
-			echo "<p>'</p>";
-                        header('Location: http://account.mackie.gq');
-                        die();
+			return 1;
 		} else {
-			echo "<p>MySQL error no {$mysqli->errno} : {$mysqli->error}</p>";
-			exit();
+			return 0;
+		}
+	}
+	public function UpdateToken($user, $token, $expiry) {
+		require_once("/inc/includes.php");
+		global $dbcon;
+		$sql = "UPDATE `logintokens` SET `Expiry`='{$expiry}' WHERE `Username'='{$username}' AND `Token`='{$token}'";
+		if ($dbcon->query($sql) === TRUE) {
+		    return 1;
+		} else {
+		    return 0;
 		}
 	}
 	///////TODO: Make user data a thing
