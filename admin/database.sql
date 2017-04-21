@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2017 at 06:24 PM
+-- Generation Time: Apr 21, 2017 at 05:45 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -41,8 +41,8 @@ INSERT INTO `config` (`setting`, `value`) VALUES
 ('currency', 'GBP'),
 ('currency_format', 'english'),
 ('footerCopy', '&copy; Peter Entwistle and Rover656. Check out the source code on <a href=\"http://github.com/Rover656/E-Commerce\">GitHub</a>'),
-('shopTitle', 'E-Shop'),
-('installDirectory', '/');
+('installDirectory', '/E-Commerce'),
+('shopTitle', 'E-Shop');
 
 -- --------------------------------------------------------
 
@@ -60,6 +60,17 @@ CREATE TABLE `items` (
   `Featured` int(21) NOT NULL,
   `Image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `Name`, `Type`, `Price`, `Quantity`, `Enabled`, `Featured`, `Image`) VALUES
+(1, 'Pen', 0, 2, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/pen.jpg'),
+(2, 'T-Shirt', 0, 11, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/T-Shirt.png'),
+(3, 'Watch', 0, 30, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/watch.png'),
+(4, 'Book', 0, 13, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/book.png'),
+(5, 'Keyring', 0, 4, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/keyring.png');
 
 -- --------------------------------------------------------
 
@@ -124,7 +135,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `logintokens`
 --

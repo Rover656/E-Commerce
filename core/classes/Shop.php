@@ -4,7 +4,7 @@ class Shop {
 
 	public function listItems($itemArray, $currency, $currency_format) {
 		foreach ($itemArray as $itemId => $item) {
-			echo '<p><a href="shop.php?item='.$itemId.'">'.$item["name"].
+			echo '<p><a href="index.php?src=/pages/shop.php&item='.$itemId.'">'.$item["name"].
 			' costs: '.$this->displayCurrency($currency).
 			$this->currencyFormat($currency_format, $item["price"]).'<a></p>';
 		}
@@ -116,7 +116,7 @@ class Shop {
 			return $output;
 		} else if ($numItems <= 2) {
 			for($i = 1; $i <=2; $i++) {
-				$output .= '<div class="featured" onclick="location.href=\'index.php?src=shop&item='.$i.'\'">'.
+				$output .= '<div class="featured" onclick="location.href=\'index.php?src=/pages/shop.php&item='.$i.'\'">'.
 				$this->homeItemDisplay($i, $items, $currency, $currency_format)
 				.'<div>';
 			}
@@ -127,7 +127,7 @@ class Shop {
 				if (in_array($randNum, $itemArray)) {
 					$i--;
 				} else {
-					$output .= '<div class="featured" onclick="location.href=\'index.php?src=shop&item='.$randNum.'\'">'.
+					$output .= '<div class="featured" onclick="location.href=\'index.php?src=/pages/shop.php&item='.$randNum.'\'">'.
 					$this->homeItemDisplay($randNum, $items, $currency, $currency_format)
 					.'</div>';
 					array_push($itemArray, $randNum);
