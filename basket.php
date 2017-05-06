@@ -84,20 +84,13 @@ require_once("inc/includes.php");
     <div class="content-section">
         <div class="container">
 			<!-- Page Contents -->
-			<h1>Featured Items</h1>
-			<?php
-			//TODO: Update to use database items
-			echo $shop->randItems($items, $currency, $currency_format);
-			?>
-
-			<h1>Encryption Check</h1>
-			<?php
-				$text = "HELLO";
-				$password = "GOODBYE";
-				echo "TEXT = " . $text . "</br>";
-				echo "PASSWORD = ". $password . "</br>";
-				echo "ENCRYPTED = " . $REnc->REnc_Encrypt_V3_Short($text, $password) . "</br>";
-				echo "DECRYPTED = " . $REnc->REnc_Decrypt_V3_Short($REnc->REnc_Encrypt_V3_Short($text, $password), $password) . "</br>";
+			<?php 
+			if (isset($basketSession)) {
+				$basket->basketContents($basketSession, $items, $currency, $currency_format);
+				echo $basket->totalPrice($basketSession, $items, $currency, $currency_format);
+			} else {
+				echo '<h1>Your Basket is empty. Take a look at <a href="shop.php">our shop</a>.</h1>'."\n";
+			}
 			?>
         </div> <!-- /.container -->
     </div> <!-- /.content-section -->
