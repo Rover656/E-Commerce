@@ -3,7 +3,7 @@
 ////NEED TO FINISH IMPORT OF http://www.xe.com/symbols.php
 ////I HAVE ONLY JUST STARTED
 class Currency {
-	public function displayPriceAsCurrency($cost, $currency) {
+	public function displayPriceAsCurrency($currency) {
 		//Adds currency tag and correct formatting
 		switch ($currency) {
 			case 'ALL':
