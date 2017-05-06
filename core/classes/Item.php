@@ -28,19 +28,27 @@ class Item {
 		}
 		return $item;
 	}
-	public function GetFeaturedItems() { //THIS DOESN'T WORK YET!
-		require_once("/inc/includes.php");//THIS DOESN'T WORK YET!
+	public function GetFeaturedItems() { //Should Work, will test soon!
+		require_once("/inc/includes.php");
 		global $dbcon;
 		$sql = "SELECT id, Name, Type, Quantity FROM items WHERE id='{$id}' AND Featured=true";
 		$result = $dbcon->query($sql);
 		if ($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
-				$items[] = $row;
+				$tempItem[0] = $row["id"];
+				$tempItem[1] = $row["Name"];
+				$tempItem[2] = $row["Type"];
+				$tempItem[3] = $row["Quantity"];
+				$tempItem[4] = $row["Enabled"];
+				$tempItem[5] = $row["Featured"];
+				$tempItem[6] = $row["Price"];
+				$tempItem[7] = $row["Image"];
+				$items[ ] = $tempItem;
 			}
 		} else {
 			return "ERR";
 		}
-		return $item;
+		return $items;
 	}
 }
 ?>
