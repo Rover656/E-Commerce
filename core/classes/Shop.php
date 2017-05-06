@@ -81,11 +81,11 @@ class Shop {
 		$_SESSION['basketSession'] = $basket;
 	}
 
-	public function displayCurrency($currency) {
+	public function displayCurrency($cost, $currency) {
 		//I am creating a custom currencyConfig for this, need to use number_format tho!
 		require_once("/inc/includes.php");
 		$Currency = new Currency;
-		return $Currency->displayCurrency($currency);
+		return $Currency->displayPriceAsCurrency($cost, $currency);
 	}
 
 	public function currencyFormat($currency_format, $number) {
