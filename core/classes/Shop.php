@@ -31,7 +31,7 @@ class Shop {
 		$Item = new Item;
 		$items = $Item->GetAllItems();
 		foreach ($items as $itemId => $item) {
-			echo $this->NewhomeItemDisplay($item, $currency, $currency_format);
+			echo $this->homeItemDisplay($item, $currency, $currency_format);
 		}
 	}
 	
@@ -46,8 +46,8 @@ class Shop {
 
 	public function homeItemDisplay($item, $currency, $currency_format) {
 		$details = '';
-		$details .= '<div style="display: inline-block"><h2>'.$item["1"].'</h2>'."\n";
-		$details .= '<img src="'.$item["7"].'" alt="'.$item["1"].'"/>'."\n";
+		$details .= '<div style="display: inline-block"><h2><a href="shop.php?item='.$item[0].'">'.$item["1"].'</a></h2>'."\n";
+		$details .= '<a href="shop.php?item='.$item[0].'">'.'<img src="'.$item["7"].'" alt="'.$item["1"].'"/></a>'."\n";
 		$details .= '<p id="item-description">'.$item["8"].'</p>'."\n";
 		$details .= '<p id="item-price">'.$this->displayCurrency($currency).
 		$this->currencyFormat($currency_format, $item["6"]).'</p></div>';
@@ -55,6 +55,9 @@ class Shop {
 	}
 	
 	public function displayItemDetails($itemId, $currency, $currency_format) {
+		require_once("/inc/includes.php");
+		$Item = new Item;
+		$item = $Item->LoadItem($itemId);
 		$details = '';
 		$details .= '<div style="display: inline-block"><h1>'.$item["1"].'</h1>'."\n";
 		$details .= '<img src="'.$item["7"].'" alt="'.$item["1"].'"/>'."\n";

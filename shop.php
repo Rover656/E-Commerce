@@ -85,7 +85,13 @@ require_once("inc/includes.php");
         <div class="container">
 			<!-- Page Contents -->
 			<?php
-				print_r($Item->LoadItem($_GET['item']));
+				if (isset($_GET['item'])) {
+					//Item Description
+					echo $Shop->displayItemDetails($_GET['item'], $currency, $currency_format);
+				} else {
+					//List all items (NEED PAGES!)
+					$Shop->ListAll($currency, $currency_format);
+				}
 			?>
         </div> <!-- /.container -->
     </div> <!-- /.content-section -->
