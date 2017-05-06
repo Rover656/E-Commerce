@@ -1341,6 +1341,7 @@ class REnc
 				default:
 					$i = 0;
 					while ($i < 4) {
+						if (!isset($replace)) $replace = "";
 						$replace .= $char;
 						$i++;
 					}
@@ -1639,6 +1640,7 @@ class REnc
 				default:
 					$i = 0;
 					while ($i < 4) {
+						if (!isset($replace)) $replace = "";
 						$replace .= $char;
 						$i++;
 					}

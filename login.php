@@ -16,13 +16,13 @@ require_once("inc/includes.php");
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 	<link href="<?php echo 'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'; ?>" rel="stylesheet">
-	<link rel="stylesheet" href="<?php echo $themeUri . 'style/css/bootstrap.css'; ?>">
-	<link rel="stylesheet" href="<?php echo $themeUri . 'style/css/normalize.min.css'; ?>">
-	<link rel="stylesheet" href="<?php echo $themeUri . 'style/css/font-awesome.min.css'; ?>">
-	<link rel="stylesheet" href="<?php echo $themeUri . 'style/css/animate.css'; ?>">
-	<link rel="stylesheet" href="<?php echo $themeUri . 'style/css/templatemo-misc.css'; ?>">
-	<link rel="stylesheet" href="<?php echo $themeUri . 'style/css/templatemo-style.css'; ?>">
-	<script src="<?php echo $themeUri . 'js/vendor/modernizr-2.6.2.min.js'; ?>"></script>
+	<link rel="stylesheet" href="<?php echo 'style/css/bootstrap.css'; ?>">
+	<link rel="stylesheet" href="<?php echo 'style/css/normalize.min.css'; ?>">
+	<link rel="stylesheet" href="<?php echo 'style/css/font-awesome.min.css'; ?>">
+	<link rel="stylesheet" href="<?php echo 'style/css/animate.css'; ?>">
+	<link rel="stylesheet" href="<?php echo 'style/css/templatemo-misc.css'; ?>">
+	<link rel="stylesheet" href="<?php echo 'style/css/templatemo-style.css'; ?>">
+	<script src="<?php echo 'js/vendor/modernizr-2.6.2.min.js'; ?>"></script>
 </head>
 <body>
 	<header class="site-header">
@@ -93,6 +93,19 @@ require_once("inc/includes.php");
 			<input type="submit" name="submit" value="Login" />
 			</form>
 			<?php } else { ?>
+			<?php
+				//Handle our login request
+				$username = $_POST['username'];
+				$password = $REnc->REnc_Encrypt_V3_Short($_POST['password'], $shopEncryptionKey);
+				$valid = $User->DoLogin($username, $password);
+				if ($valid[0] == false) {
+					echo "Wrong username or password";
+				} else {
+					echo "Welcome";
+				}
+				$_SESSION['token'] = $valid[1];
+				$_SESSION['user'] = $valid[2];
+			?>
 			<?php } ?>
         </div> <!-- /.container -->
     </div> <!-- /.content-section -->

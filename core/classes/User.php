@@ -16,7 +16,7 @@ class User {
 			//Register the token
 			$time = date('siHdmY') + 100000000000; //Times out after 10 mins!
 			$result = $this->SaveToken($username, $userToken, $time);
-			if ($result = 1) {
+			if ($result == 1) {
 				$data[0] = true;
 				$data[1] = $userToken;
 				$data[2] = $username;
@@ -88,8 +88,7 @@ class User {
 		global $dbcon;
 		$sql = "INSERT  INTO `logintokens` (`id`, `Username`, `Token`, `Expiry`) 
 				VALUES (NULL, '{$user}', '{$token}', '{$expiry}')";
-
-		if ($mysqli->query($sql)) {
+		if ($dbcon->query($sql)) {
 			return 1;
 		} else {
 			return 0;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 21, 2017 at 05:45 PM
+-- Generation Time: May 06, 2017 at 07:47 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -82,7 +82,7 @@ CREATE TABLE `logintokens` (
   `id` int(21) NOT NULL,
   `Username` varchar(255) NOT NULL,
   `Token` varchar(255) NOT NULL,
-  `Expiry` int(21) NOT NULL
+  `Expiry` bigint(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -98,6 +98,13 @@ CREATE TABLE `users` (
   `Email` varchar(255) NOT NULL,
   `Enabled` int(21) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `Username`, `Password`, `Email`, `Enabled`) VALUES
+(1, 'test', '2fea0a41ab40861c0a41', 'test@example.com', 1);
 
 --
 -- Indexes for dumped tables
@@ -140,12 +147,12 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `logintokens`
 --
 ALTER TABLE `logintokens`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

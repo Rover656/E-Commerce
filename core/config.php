@@ -13,10 +13,6 @@ $db_name = "E-Commerce";
 $shopEncryptionKey = "RANDOMTEXTHERE"; //NOT LOADED BY DB FOR SAFETY
 /////////////////TESTING\\\\\\\\\\\\\\\\\\\\\
 
-$currentTheme = "default";
-include_once("themeControl.php");
-
-
 ///Load DB
 require_once("/core/dbcon.php");
 $sql = "SELECT * FROM config";
