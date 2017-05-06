@@ -25,4 +25,7 @@
 	//Currency Includes
 	require_once("/" . 'core/classes/Currency.php');
 	$Currency = new Currency;
+	//User Includes
+	require_once("/" . 'core/classes/User.php');
+	$User = new User;
 ?>

@@ -4,10 +4,10 @@ class User {
 		//Need to send encrypted data to this script!
 		require_once("/inc/includes.php");
 		global $dbcon;
-		$userToken = GenerateToken();
+		$userToken = 0;//GenerateToken();
 		//Check the login
 		$sql = "SELECT * from users WHERE username LIKE '{$username}' AND password LIKE '{$password}' LIMIT 1";
-		$result = $mysqli->query($dbcon);
+		$result = $dbcon->query($sql);
 		if (!$result->num_rows == 1) {
 			$data[0] = false;
 			$data[1] = 0;
@@ -15,7 +15,7 @@ class User {
 		} else {
 			//Register the token
 			$time = date('siHdmY') + 100000000000; //Times out after 10 mins!
-			$result = SaveToken($username, $userToken, $time);
+			$result = 1;//SaveToken($username, $userToken, $time);
 			if ($result = 1) {
 				$data[0] = true;
 				$data[1] = $userToken;
