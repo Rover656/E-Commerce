@@ -2,71 +2,70 @@
 //TODO: Clean up and revise/add more (When DB Support Enabled)
 class Shop {
 
-	public function listItems($itemArray, $currency, $currency_format) {
-		foreach ($itemArray as $itemId => $item) {
-			echo '<p><a href="index.php?src=/pages/shop.php&item='.$itemId.'">'.$item["name"].
+	public function listItemsText($currency, $currency_format) {
+		require_once("/inc/includes.php");
+		$Item = new Item;
+		$items = $Item->GetAllItems();
+		foreach ($items as $itemId => $item) {
+			echo '<p><a href="shop.php?item='.$itemId.'">'.$item["1"].
 			' costs: '.$this->displayCurrency($currency).
-			$this->currencyFormat($currency_format, $item["price"]).'<a></p>';
+			$this->currencyFormat($currency_format, $item["6"]).'<a></p>';
 		}
-		//NEED TO TEST THEN ENABLE:
-		/*require_once("inc/includes.php");
-		global $dbcon;
-		$sql = "SELECT * FROM items";
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0) {
-			// output data of each row
-			while($row = $result->fetch_assoc()) {
-				data[ ] = $row; //NEED TO CHECK LATER
-			}
-			return data;
-		} else {
-			return "";
-		}*/
+		
+	}
+	
+	public function listFeaturedText($currency, $currency_format) {
+		require_once("/inc/includes.php");
+		$Item = new Item;
+		$items = $Item->GetFeaturedItems();
+		foreach ($items as $itemId => $item) {
+			echo '<p><a href="shop.php?item='.$itemId.'">'.$item["1"].
+			' costs: '.$this->displayCurrency($currency).
+			$this->currencyFormat($currency_format, $item["6"]).'<a></p>';
+		}
+		
+	}
+	
+	public function listAll($currency, $currency_format) { //Will need to be revised to add pages
+		require_once("/inc/includes.php");
+		$Item = new Item;
+		$items = $Item->GetAllItems();
+		foreach ($items as $itemId => $item) {
+			echo $this->NewhomeItemDisplay($item, $currency, $currency_format);
+		}
+	}
+	
+	public function listFeatured($currency, $currency_format) {
+		require_once("/inc/includes.php");
+		$Item = new Item;
+		$items = $Item->GetFeaturedItems();
+		foreach ($items as $itemId => $item) {
+			echo $this->homeItemDisplay($item, $currency, $currency_format);
+		}
 	}
 
-	public function displayItemDetails($itemId, $items, $currency, $currency_format) {
-		$item = $items[$itemId];
+	public function homeItemDisplay($item, $currency, $currency_format) {
 		$details = '';
-		$details .= '<h1>'.$item["name"].'</h1>'."\n";
-		$details .= '<img src="'.$item["thumb"].'" alt="'.$item["name"].'"/>'."\n";
-		$details .= '<p id="item-description">'.$item["description"].'</p>'."\n";
+		$details .= '<div style="display: inline-block"><h2>'.$item["1"].'</h2>'."\n";
+		$details .= '<img src="'.$item["7"].'" alt="'.$item["1"].'"/>'."\n";
+		$details .= '<p id="item-description">'.$item["8"].'</p>'."\n";
 		$details .= '<p id="item-price">'.$this->displayCurrency($currency).
-			$this->currencyFormat($currency_format, $item["price"]).'</p>'."\n";
+		$this->currencyFormat($currency_format, $item["6"]).'</p></div>';
 		return $details;
 	}
-
-	public function homeItemDisplay($itemId, $items, $currency, $currency_format) {
-		$item = $items[$itemId];
+	
+	public function displayItemDetails($itemId, $currency, $currency_format) {
 		$details = '';
-		$details .= '<h2>'.$item["name"].'</h2>'."\n";
-		$details .= '<img src="'.$item["thumb"].'" alt="'.$item["name"].'"/>'."\n";
-		$details .= '<p id="item-description">'.$item["description"].'</p>'."\n";
+		$details .= '<div style="display: inline-block"><h1>'.$item["1"].'</h1>'."\n";
+		$details .= '<img src="'.$item["7"].'" alt="'.$item["1"].'"/>'."\n";
+		$details .= '<p id="item-description">'.$item["8"].'</p>'."\n";
 		$details .= '<p id="item-price">'.$this->displayCurrency($currency).
-			$this->currencyFormat($currency_format, $item["price"]).'</p>'."\n";
+		$this->currencyFormat($currency_format, $item["6"]).'</p></div>';
 		return $details;
-	}
-
-	public function itemName($itemId, $items) {
-		$item = $items[$itemId];
-		return $item["name"];
-	}
-
-	public function itemPrice($itemId, $items, $currency_format) {
-		$item = $items[$itemId];
-		return $this->currencyFormat($currency_format, $item["price"]);
-	}
-
-	public function itemPrice_num($itemId, $items) {
-		$item = $items[$itemId];
-		return $item["price"];
-	}
-
-	public function numberOfItems($items) {
-		$numItems = count($items);
-		return $numItems;
 	}
 
 	public function addItemToBasket($itemId, $quantity, $basketSession, $items) {
+		//Will update to new system
 		if (!isset($basketSession)) {
 			$basket = array();
 		} else {
@@ -80,7 +79,7 @@ class Shop {
 	}
 
 	public function displayCurrency($currency) {
-		//I am creating a custom currencyConfig for this
+		//I am creating a custom currencyConfig for this, need to use number_format tho!
 		require_once("/inc/includes.php");
 		$Currency = new Currency;
 		return $Currency->displayCurrency($currency);
@@ -107,35 +106,6 @@ class Shop {
 		}
 	}
 
-	public function randItems($items, $currency, $currency_format) {
-		$numItems = $this->numberOfItems($items);
-		$output = "";
-		$itemArray = array();
-		if ($numItems == 0) {
-			$output = "No items are available at the moment. Please try again soon.";
-			return $output;
-		} else if ($numItems <= 2) {
-			for($i = 1; $i <=2; $i++) {
-				$output .= '<div class="featured" onclick="location.href=\'index.php?src=/pages/shop.php&item='.$i.'\'">'.
-				$this->homeItemDisplay($i, $items, $currency, $currency_format)
-				.'<div>';
-			}
-			return $output;
-		} else {
-			for($i = 1; $i <=3; $i++) {
-				$randNum = rand(1, $numItems);
-				if (in_array($randNum, $itemArray)) {
-					$i--;
-				} else {
-					$output .= '<div class="featured" onclick="location.href=\'index.php?src=/pages/shop.php&item='.$randNum.'\'">'.
-					$this->homeItemDisplay($randNum, $items, $currency, $currency_format)
-					.'</div>';
-					array_push($itemArray, $randNum);
-				}
-			}
-			return $output;
-		}
-	}
 /*
 	public function itemsOnOffer($items,) {
 		// To do

@@ -91,7 +91,7 @@ require_once("inc/includes.php");
 			<h1>Featured Items</h1>
 			<?php
 			//TODO: Update to use database items
-			echo $shop->randItems($items, $currency, $currency_format);
+			echo $Shop->listFeatured($currency, $currency_format);
 			?>
 
 			<h1>Encryption Check</h1>
