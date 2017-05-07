@@ -49,9 +49,9 @@ class Shop {
 	public function homeItemDisplay($item, $currency, $currency_format) {
 		$details = '';
 		//$details .= '<div style="display: inline-block"><h2><a href="shop.php?item='.$item[0].'">'.$item["1"].'</a></h2>'."\n"; BY ID
-		$details .= '<div style="display: inline-block; text-align: center;"><h2><a href="shop.php?item='.$item[1].'">'.$item["1"].'</a></h2>'."\n";
+		$details .= '<div style="display: inline-block; text-align: center;"><h2><a href="shop.php?item='.$item[1].'&id='.$item[0].'">'.$item["1"].'</a></h2>'."\n";
 		//$details .= '<a href="shop.php?item='.$item[0].'">'.'<img height="250" width="250" src="'.$item["7"].'" alt="'.$item["1"].'"/></a>'."\n"; BY ID
-		$details .= '<a href="shop.php?item='.$item[1].'">'.'<img height="250" width="250" src="'.$item["7"].'" alt="'.$item["1"].'"/></a>'."\n";
+		$details .= '<a href="shop.php?item='.$item[1].'&id='.$item[0].'">'.'<img height="250" width="250" src="'.$item["7"].'" alt="'.$item["1"].'"/></a>'."\n";
 		$details .= '<p id="item-description">'.$item["8"].'</p>'."\n";
 		$details .= '<p id="item-price">'.$this->displayCurrency($currency).
 		$this->currencyFormat($currency_format, $item["6"]).'</p></div>';
@@ -75,6 +75,19 @@ class Shop {
 		require_once("/inc/includes.php");
 		$Item = new Item;
 		$item = $Item->LoadItemByName($itemName);
+		$details = '';
+		$details .= '<div style="display: inline-block; text-align: center;"><h1>'.$item["1"].'</h1>'."\n";
+		$details .= '<img height="250" width="250" src="'.$item["7"].'" alt="'.$item["1"].'"/>'."\n";
+		$details .= '<p id="item-description">'.$item["8"].'</p>'."\n";
+		$details .= '<p id="item-price">'.$this->displayCurrency($currency).
+		$this->currencyFormat($currency_format, $item["6"]).'</p></div>';
+		return $details;
+	}
+	
+	public function displayItemDetailsByNameAndID($itemName, $itemID, $currency, $currency_format) {
+		require_once("/inc/includes.php");
+		$Item = new Item;
+		$item = $Item->LoadItemByNameAndID($itemName, $itemID);
 		$details = '';
 		$details .= '<div style="display: inline-block; text-align: center;"><h1>'.$item["1"].'</h1>'."\n";
 		$details .= '<img height="250" width="250" src="'.$item["7"].'" alt="'.$item["1"].'"/>'."\n";
