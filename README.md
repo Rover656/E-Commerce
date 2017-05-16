@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/Rover656/E-Commerce.svg?branch=master)](https://travis-ci.org/Rover656/E-Commerce)
-
 E-Commerce
 ==========
 
