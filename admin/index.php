@@ -1,3 +1,3 @@
 <?php
-// Coming soon
+// Coming soon, once theme engine is done
 ?>
