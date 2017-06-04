@@ -38,7 +38,7 @@ require_once("inc/includes.php");
 							<a>Welcome, <?php echo $_SESSION['user'] ?>!</a>
 							<a href="#">Profile</a>
 							<a href="#">Settings</a>
-							<a href="#">Logout</a>
+							<a href="logout.php">Logout</a>
 							<?php } ?>
                         </div> <!-- /.top-header-left -->
                     </div> <!-- /.col-md-6 -->
@@ -88,20 +88,16 @@ require_once("inc/includes.php");
     <div class="content-section">
         <div class="container">
 			<!-- Page Contents -->
-			<h1>Featured Items</h1>
 			<?php
-			//TODO: Update to use database items
-			echo $Shop->listFeatured($currency, $currency_format);
-			?>
-
-			<h1>Encryption Check</h1>
-			<?php
-				$text = "HELLO";
-				$password = "GOODBYE";
-				echo "TEXT = " . $text . "</br>";
-				echo "PASSWORD = ". $password . "</br>";
-				echo "ENCRYPTED = " . $REnc->REnc_Encrypt_V3_Short($text, $password) . "</br>";
-				echo "DECRYPTED = " . $REnc->REnc_Decrypt_V3_Short($REnc->REnc_Encrypt_V3_Short($text, $password), $password) . "</br>";
+			if ($_GET['page'] == "home") {
+				include("pages/index.php");
+			} else if ($_GET['page'] == "shop") {
+				include("pages/shop.php");
+			} else if ($_GET['page'] == "basket") {
+				include("pages/basket.php");
+			} else {
+				header("Location: index.php?page=home");
+			}
 			?>
         </div> <!-- /.container -->
     </div> <!-- /.content-section -->

@@ -32,7 +32,7 @@ class User {
 		require_once("/inc/includes.php");
 		global $dbcon;
 		$sql = "DELETE FROM `logintokens` WHERE `Token`='{$token}'";
-		if ($conn->query($sql) === TRUE) {
+		if ($dbcon->query($sql) === TRUE) {
 		    return 1;
 		} else {
 		    return 0;

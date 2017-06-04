@@ -102,6 +102,7 @@ require_once("inc/includes.php");
 					echo "Wrong username or password";
 				} else {
 					echo "Welcome";
+					header("Location: index.php");
 				}
 				$_SESSION['token'] = $valid[1];
 				$_SESSION['user'] = $valid[2];
