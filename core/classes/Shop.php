@@ -8,7 +8,7 @@ class Shop {
 		$items = $Item->GetAllItems();
 		foreach ($items as $itemId => $item) {
 			//echo '<p><a href="shop.php?item='.$item[0].'">'.$item["1"]. BY ID
-			echo '<p><a href="shop.php?item='.$item[1].'">'.$item["1"].
+			echo '<p><a href="index.php?page=shop&item='.$item[1].'">'.$item["1"].
 			' costs: '.$this->displayCurrency($currency).
 			$this->currencyFormat($currency_format, $item["6"]).'<a></p>';
 		}
@@ -21,7 +21,7 @@ class Shop {
 		$items = $Item->GetFeaturedItems();
 		foreach ($items as $itemId => $item) {
 			//echo '<p><a href="shop.php?item='.$item[0].'">'.$item["1"]. BY ID
-			echo '<p><a href="shop.php?item='.$item[1].'">'.$item["1"].
+			echo '<p><a href="index.php?page=shop&item='.$item[1].'">'.$item["1"].
 			' costs: '.$this->displayCurrency($currency).
 			$this->currencyFormat($currency_format, $item["6"]).'<a></p>';
 		}
@@ -49,9 +49,9 @@ class Shop {
 	public function homeItemDisplay($item, $currency, $currency_format) {
 		$details = '';
 		//$details .= '<div style="display: inline-block"><h2><a href="shop.php?item='.$item[0].'">'.$item["1"].'</a></h2>'."\n"; BY ID
-		$details .= '<div style="display: inline-block; text-align: center;"><h2><a href="shop.php?item='.$item[1].'&id='.$item[0].'">'.$item["1"].'</a></h2>'."\n";
+		$details .= '<div style="display: inline-block; text-align: center;"><h2><a href="index.php?page=shop&item='.$item[1].'&id='.$item[0].'">'.$item["1"].'</a></h2>'."\n";
 		//$details .= '<a href="shop.php?item='.$item[0].'">'.'<img height="250" width="250" src="'.$item["7"].'" alt="'.$item["1"].'"/></a>'."\n"; BY ID
-		$details .= '<a href="shop.php?item='.$item[1].'&id='.$item[0].'">'.'<img height="250" width="250" src="'.$item["7"].'" alt="'.$item["1"].'"/></a>'."\n";
+		$details .= '<a href="index.php?page=shop&item='.$item[1].'&id='.$item[0].'">'.'<img height="250" width="250" src="'.$item["7"].'" alt="'.$item["1"].'"/></a>'."\n";
 		$details .= '<p id="item-description">'.$item["8"].'</p>'."\n";
 		$details .= '<p id="item-price">'.$this->displayCurrency($currency).
 		$this->currencyFormat($currency_format, $item["6"]).'</p></div>';
