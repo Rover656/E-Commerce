@@ -35,6 +35,9 @@ if ($result->num_rows > 0) {
 		if ($row["setting"] == "installDirectory") {
 			$installDir = $row["value"];
 		}
+		if ($row['setting'] == "userModuleLocation") {
+			$userModuleLocation = $row['value'];
+		}
 	}
 } else {
 	///Shop Details
@@ -58,4 +61,7 @@ if (!isset($currency_format)) { $installDir = "/"; }
 define("BASE_URL", "/");
 define("INSTALL_DIR", $installDir);
 ini_set('default_charset', 'utf-8');
+
+//////////MODULES\\\\\\\\\\\\
+define("USER_MODULE", $userModuleLocation);
 ?>

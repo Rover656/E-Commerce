@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 06, 2017 at 07:47 PM
+-- Generation Time: Jun 05, 2017 at 12:56 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -42,7 +42,8 @@ INSERT INTO `config` (`setting`, `value`) VALUES
 ('currency_format', 'english'),
 ('footerCopy', '&copy; Peter Entwistle and Rover656. Check out the source code on <a href=\"http://github.com/Rover656/E-Commerce\">GitHub</a>'),
 ('installDirectory', '/E-Commerce'),
-('shopTitle', 'E-Shop');
+('shopTitle', 'E-Shop'),
+('userModuleLocation', '/core/classes/User.php');
 
 -- --------------------------------------------------------
 
@@ -53,24 +54,26 @@ INSERT INTO `config` (`setting`, `value`) VALUES
 CREATE TABLE `items` (
   `id` int(21) NOT NULL,
   `Name` varchar(255) NOT NULL,
-  `Type` int(21) NOT NULL,
-  `Price` int(21) NOT NULL,
-  `Quantity` int(21) NOT NULL,
+  `Type` float NOT NULL,
+  `Price` float NOT NULL,
+  `Quantity` float NOT NULL,
   `Enabled` int(21) NOT NULL,
   `Featured` int(21) NOT NULL,
-  `Image` varchar(255) NOT NULL
+  `Image` varchar(255) NOT NULL,
+  `Description` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `Name`, `Type`, `Price`, `Quantity`, `Enabled`, `Featured`, `Image`) VALUES
-(1, 'Pen', 0, 2, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/pen.jpg'),
-(2, 'T-Shirt', 0, 11, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/T-Shirt.png'),
-(3, 'Watch', 0, 30, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/watch.png'),
-(4, 'Book', 0, 13, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/book.png'),
-(5, 'Keyring', 0, 4, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/keyring.png');
+INSERT INTO `items` (`id`, `Name`, `Type`, `Price`, `Quantity`, `Enabled`, `Featured`, `Image`, `Description`) VALUES
+(1, 'Pen', 0, 2, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/pen.jpg', 'A ballpoint pen'),
+(2, 'T-Shirt', 0, 10.99, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/T-Shirt.png', 'A nice white cotton t-shirt.'),
+(3, 'Watch', 0, 30, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/watch.png', 'A cool watch with adjustable strap.'),
+(4, 'Book', 0, 12.5, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/book.png', 'An open source biology text book.'),
+(5, 'Keyring', 0, 3.99, 1, 1, 1, 'http://peterentwistle.co.uk/e-shop/img-tmp/keyring.png', 'To help you keep all your keys together.'),
+(6, 'Test Item', 0, 5.99, 15, 1, 0, 'http://cliparts.co/cliparts/kTM/R6B/kTMR6Bnpc.png', 'Test Item.');
 
 -- --------------------------------------------------------
 
@@ -84,6 +87,14 @@ CREATE TABLE `logintokens` (
   `Token` varchar(255) NOT NULL,
   `Expiry` bigint(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `logintokens`
+--
+
+INSERT INTO `logintokens` (`id`, `Username`, `Token`, `Expiry`) VALUES
+(4, 'test', 'f6be719129871ba9f9322f165b211b30', 29362006052017),
+(9, 'test', '47240663f7e0c0fd0a10cd6a0c8a993b', 33231205062017);
 
 -- --------------------------------------------------------
 
@@ -142,12 +153,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `logintokens`
 --
 ALTER TABLE `logintokens`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `users`
 --
