@@ -23,7 +23,8 @@ class User {
 				return $data;
 			} else {
 				$data[0] = false;
-				$data[1] = 0;
+				$data[1] = "";
+				$data[2] = "";
 				return $data;
 			}
 		}
