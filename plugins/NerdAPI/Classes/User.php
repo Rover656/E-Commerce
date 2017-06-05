@@ -4,8 +4,13 @@ class User {
 		//Need to send encrypted data to this script!
 		require_once('client.php');
 		require_once('config.php');
+		require('inc/include.php');
 		global $apiKey;
-		$login = json_decode(POST_Login_Login($username, $password, $apiKey));
+		global $apiPassword;
+		$api = new NerdAPIClientFunctionsClass();
+		$login = json_decode($api->POST_Login_Login($username, $password, $apiKey));
+		$password = $REnc->REnc_Decrypt_V3_Short($password, $shopEncryptionKey);
+		//$password = $REnc->REnc_Encrypt_V3_Short($password, $apiPassword);
 		if ($login['Valid'] == true) {
 			$data[0] = true;
 			$data[1] = $login['Token'];
@@ -21,8 +26,11 @@ class User {
 	public function DoLogout($token) {
 		require_once('client.php');
 		require_once('config.php');
+		require('/inc/include.php');
 		global $apiKey;
-		$logout = json_decode(POST_Login_Logout($token, $apiKey));
+		global $apiPassword;
+		$api = new NerdAPIClientFunctionsClass();
+		$logout = json_decode($api->POST_Login_Logout($token, $apiKey));
 		if ($logout['Success'] == true) {
 		    return 1;
 		} else {
@@ -38,8 +46,11 @@ class User {
 		//Need to send encrypted data to this script!
 		require_once('client.php');
 		require_once('config.php');
+		require('/inc/include.php');
 		global $apiKey;
-		$check = json_decode(POST_Login_CheckToken($token, $apiKey));
+		global $apiPassword;
+		$api = new NerdAPIClientFunctionsClass();
+		$check = json_decode($api->POST_Login_CheckToken($token, $apiKey));
 		if ($check['Valid'] == true) {
 			return true;
 		} else {
