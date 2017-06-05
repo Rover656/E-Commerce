@@ -43,7 +43,7 @@ INSERT INTO `config` (`setting`, `value`) VALUES
 ('footerCopy', '&copy; Peter Entwistle and Rover656. Check out the source code on <a href=\"http://github.com/Rover656/E-Commerce\">GitHub</a>'),
 ('installDirectory', '/E-Commerce'),
 ('shopTitle', 'E-Shop'),
-('userModuleLocation', '/core/classes/User.php');
+('userModuleLocation', 'core/classes/User.php');
 
 -- --------------------------------------------------------
 

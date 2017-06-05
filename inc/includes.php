@@ -26,6 +26,6 @@
 	require_once("/" . 'core/classes/Currency.php');
 	$Currency = new Currency;
 	//User Includes
-	require_once("/" . 'core/classes/User.php');
+	require_once("/" . USER_MODULE);
 	$User = new User;
 ?>
