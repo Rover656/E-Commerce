@@ -60,7 +60,8 @@ CREATE TABLE `items` (
   `Enabled` int(21) NOT NULL,
   `Featured` int(21) NOT NULL,
   `Image` varchar(255) NOT NULL,
-  `Description` mediumtext NOT NULL
+  `Description` mediumtext NOT NULL,
+  `Distributor` varchat(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
