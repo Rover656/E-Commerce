@@ -88,14 +88,6 @@ CREATE TABLE `logintokens` (
   `Expiry` bigint(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `logintokens`
---
-
-INSERT INTO `logintokens` (`id`, `Username`, `Token`, `Expiry`) VALUES
-(4, 'test', 'f6be719129871ba9f9322f165b211b30', 29362006052017),
-(9, 'test', '47240663f7e0c0fd0a10cd6a0c8a993b', 33231205062017);
-
 -- --------------------------------------------------------
 
 --
