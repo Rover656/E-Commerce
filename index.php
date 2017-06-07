@@ -31,15 +31,15 @@ require_once("inc/includes.php");
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="top-header-left">
-							<?php if (!isset($_SESSION["token"])) { ?>
-                            <a href="signup.php">Sign Up</a>
-                            <a href="login.php">Log In</a>
-							<?php } else { ?>
-							<a>Welcome, <?php echo $_SESSION['user'] ?>!</a>
-							<a href="#">Profile</a>
-							<a href="#">Settings</a>
-							<a href="logout.php">Logout</a>
-							<?php } ?>
+			<?php if (!isset($_SESSION["token"])) { ?>
+                            <a href="#">Sign Up</a>
+                            <a href="index.php?page=login">Log In</a>
+			<?php } else { ?>
+			    <a>Welcome, <?php echo $_SESSION['user'] ?>!</a>
+			    <a href="#">Profile</a>
+			    <a href="#">Settings</a>
+			    <a href="index.php?page=logout">Logout</a>
+			<?php } ?>
                         </div> <!-- /.top-header-left -->
                     </div> <!-- /.col-md-6 -->
                     <div class="col-md-6 col-sm-6">
@@ -95,6 +95,10 @@ require_once("inc/includes.php");
 				include("pages/shop.php");
 			} else if ($_GET['page'] == "basket") {
 				include("pages/basket.php");
+			} else if ($_GET['page'] == "login") {
+				include("pages/login.php");
+			} else if ($_GET['page'] == "logout") {
+				include("pages/logout.php");
 			} else {
 				header("Location: index.php?page=home");
 			}
