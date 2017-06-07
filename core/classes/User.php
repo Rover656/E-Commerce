@@ -111,6 +111,7 @@ class User {
 		return "Not Implemented!";
 	}
 	public function BuyProduct($productId, $Quantity) {
+		//THIS WILL BE PASSED AFTER THE PAYPAL PAYMENT IS COMPLETE
 		return "Not Implemented!";
 	}
 }
