@@ -1,4 +1,7 @@
-<?php if (isset($_TOKEN['token']) header('Location: index.php?page=home'); ?>
+<?php if (isset($_TOKEN['token'])) {
+	header('Location: index.php?page=home'); 
+}
+?>
 <?php
   if (!isset($_POST["submit"])) {
 ?>
